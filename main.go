@@ -17,13 +17,13 @@ func main() {
 	// Connect to the Database
 	db.ConnectDB()
 
+	// Setup the router
+	router.SetUpRoutes(app)
+
 	// handle unavailable route
 	app.Use(func(c *fiber.Ctx) error {
 		return c.SendStatus(404) // => 404 "Not Found"
 	})
-
-	// Setup the router
-	router.SetUpRoutes(app)
 
 	// Listen on PORT 300
 	app.Listen(":3000")
